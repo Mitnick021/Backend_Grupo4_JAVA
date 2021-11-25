@@ -23,4 +23,28 @@ public class StoreController {
     Store newStore(@RequestBody Store store){
         return storeRepository.save((store));
     }
+
+    @DeleteMapping("/store/delete/{storename}")
+    String deleteStore(@PathVariable String storename){
+        Store store = storeRepository.findById(storename).orElse(null);
+        if (store == null){
+            throw new StoreNotFoundException("La tienda no existe");
+        }
+
+        storeRepository.deleteById(storename);
+        return "tienda eliminada";
+    }
+
+    @PutMapping("/store/update")
+    Store updateStore(@RequestBody Store storeUpd){
+        Store store = storeRepository.findById(storeUpd.getName()).orElse(null);
+        if (store == null){
+            throw new StoreNotFoundException("la tienda no existe");
+        }
+        store.setName(storeUpd.getName());
+        store.setDetail(storeUpd.getDetail());
+        store.setAdress(storeUpd.getAdress());
+
+        return storeRepository.save(store);
+    }
 }

@@ -9,7 +9,7 @@ public class Store {
     @Id
     private String storename;
     private String detail;
-    private  String adress;
+    private String adress;
     private Integer idcliente;
     private List<Product> productos;
 

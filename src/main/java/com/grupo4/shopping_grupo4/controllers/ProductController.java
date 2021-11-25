@@ -48,4 +48,30 @@ public class ProductController {
         return  productStore;
     }
 
+    @DeleteMapping("/product/delete/{Idproduct}")
+    String deleteProduct(@PathVariable String Idproduct){
+        Product product = productRepository.findById(Idproduct).orElse(null);
+        if (product == null){
+            throw new ProductNotFoundException("El producto no existe");
+        }
+
+        productRepository.deleteById(Idproduct);
+        return "Producto eliminado";
+    }
+
+    @PutMapping("/product/update")
+    Product updateProduct(@RequestBody Product productUpd){
+        Product product = productRepository.findById(productUpd.getIdproduct()).orElse(null);
+        if (product == null){
+            throw new ProductNotFoundException("El producto no existe");
+        }
+        product.setIdproduct(productUpd.getIdproduct());
+        product.setNamestoreproduct(productUpd.getNamestoreproduct());
+        product.setName(productUpd.getName());
+        product.setPrecio(productUpd.getPrecio());
+        product.setCategoria(productUpd.getCategoria());
+
+        return productRepository.save(product);
+    }
+
 }
