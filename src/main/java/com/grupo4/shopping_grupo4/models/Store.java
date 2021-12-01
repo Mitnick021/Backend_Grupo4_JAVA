@@ -2,8 +2,6 @@ package com.grupo4.shopping_grupo4.models;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.List;
-
 public class Store {
 
     @Id
@@ -11,14 +9,12 @@ public class Store {
     private String detail;
     private String adress;
     private Integer idcliente;
-    private List<Product> productos;
 
-    public Store(String storename, String detail, String adress, Integer idcliente, List<Product> productos) {
+    public Store(String storename, String detail, String adress, Integer idcliente) {
         this.storename = storename;
         this.detail = detail;
         this.adress = adress;
         this.idcliente = idcliente;
-        this.productos = productos;
     }
 
     public String getName() {
@@ -44,10 +40,6 @@ public class Store {
     public void setAdress(String adress) {
         this.adress = adress;
     }
-
-    public List<Product> getProductos() {return productos;}
-
-    public void setProductos(List<Product> productos) {this.productos = productos;}
 
     public Integer getIdcliente() {return idcliente;}
 

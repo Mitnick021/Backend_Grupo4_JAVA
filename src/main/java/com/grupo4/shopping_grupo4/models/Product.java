@@ -2,8 +2,6 @@ package com.grupo4.shopping_grupo4.models;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.List;
-
 public class Product {
 
     @Id
@@ -44,7 +42,6 @@ public class Product {
     public String getIdproduct() {return Idproduct;}
 
     public void setIdproduct(String idproduct) {this.Idproduct = idproduct;}
-
 
     public String getNamestoreproduct() {return namestoreproduct;}
 
