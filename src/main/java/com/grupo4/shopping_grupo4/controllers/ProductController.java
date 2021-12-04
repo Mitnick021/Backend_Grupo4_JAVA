@@ -19,9 +19,9 @@ public class ProductController {
         return "¡¡CONEXION EXITOSA!!";
     }
 
-    @GetMapping("/product/{Idproduct}")
-    Product getProduct(@PathVariable String Idproduct){
-        return productRepository.findById(Idproduct).orElseThrow(()-> new ProductNotFoundException("No se encontro el producto"));
+    @GetMapping("/product/{codeproduct}")
+    Product getProduct(@PathVariable String codeproduct){
+        return productRepository.findById(codeproduct).orElseThrow(()-> new ProductNotFoundException("No se encontro el producto"));
     }
 
     @PostMapping("/products")
@@ -29,26 +29,26 @@ public class ProductController {
         return productRepository.save(product);
     }
 
-    @DeleteMapping("/product/delete/{Idproduct}")
-    String deleteProduct(@PathVariable String Idproduct){
-        Product product = productRepository.findById(Idproduct).orElse(null);
+    @DeleteMapping("/product/delete/{codeproduct}")
+    String deleteProduct(@PathVariable String codeproduct){
+        Product product = productRepository.findById(codeproduct).orElse(null);
         if (product == null){
             throw new ProductNotFoundException("El producto no existe");
         }
 
-        productRepository.deleteById(Idproduct);
+        productRepository.deleteById(codeproduct);
         return "Producto eliminado";
     }
 
     @PutMapping("/product/update")
     Product updateProduct(@RequestBody Product productUpd){
-        Product product = productRepository.findById(productUpd.getIdproduct()).orElse(null);
+        Product product = productRepository.findById(productUpd.getCodeproduct()).orElse(null);
         if (product == null){
             throw new ProductNotFoundException("El producto no existe");
         }
-        product.setIdproduct(productUpd.getIdproduct());
+        product.setCodeproduct(productUpd.getProductname());
         product.setNamestoreproduct(productUpd.getNamestoreproduct());
-        product.setName(productUpd.getName());
+        product.setProductname(productUpd.getProductname());
         product.setPrecio(productUpd.getPrecio());
         product.setCategoria(productUpd.getCategoria());
 
